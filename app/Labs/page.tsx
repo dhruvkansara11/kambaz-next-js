@@ -20,6 +20,11 @@ export default function Labs() {
             Lab 3: JavaScript Fundamentals
           </Link>
         </li>
+         <li>
+          <Link href="/Account/Signin" id="wd-kambaz-link">
+            Kambaz
+          </Link>
+        </li>
       </ul>
     </div>
   );

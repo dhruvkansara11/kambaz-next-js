@@ -7,6 +7,9 @@ export default function Lab1() {
   return (
     <div id="wd-lab1">
       <h2>Lab 1</h2>
+      <h2>Name: Dhruv Amitkumar Kansara</h2>
+      <h2>Section: Offline CS5610.18616.202610</h2>
+      <a href="https://github.com/dhruvkansara11/kambaz-next-js">GitHub Link</a>
       <h3> HTML Examples </h3>
         <div id = "wd-h-tag">
             <div id = "wd-p-tag"> </div>

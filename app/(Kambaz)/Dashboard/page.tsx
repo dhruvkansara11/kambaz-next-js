@@ -9,7 +9,7 @@ export default function Dashboard() {
       <div id="wd-dashboard-courses">
         {/* Course 1 */}
         <div className="wd-dashboard-course">
-          <Link href="/Courses/1234" className="wd-dashboard-course-link">
+          <Link href="/Courses/1234/Home" className="wd-dashboard-course-link">
             <Image src="/image2.jpeg" width={200} height={150} alt="React JS" />
             <div>
               <h5>CS1234 React JS</h5>
@@ -21,7 +21,7 @@ export default function Dashboard() {
 
         {/* Course 2 */}
         <div className="wd-dashboard-course">
-        <Link href="/Courses/5130" className="wd-dashboard-course-link">
+        <Link href="/Courses/5130/Home" className="wd-dashboard-course-link">
           <Image src="/image3.jpeg" width={200} height={150} alt="Applied AI" />
           <div>
             <h5>CS5130 Applied Programming and Data Processing for AI</h5>
@@ -32,7 +32,7 @@ export default function Dashboard() {
       </div>
         {/* Course 3 */}
        <div className="wd-dashboard-course">
-        <Link href="/Courses/5200" className="wd-dashboard-course-link">
+        <Link href="/Courses/5200/Home" className="wd-dashboard-course-link">
           <Image src="/image4.jpeg" width={200} height={150} alt="DBMS" />
           <div>
             <h5>CS5200 Database Management Systems</h5>
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
         {/* Course 4 */}
         <div className="wd-dashboard-course">
-          <Link href="/Courses/5800" className="wd-dashboard-course-link">
+          <Link href="/Courses/5800/Home" className="wd-dashboard-course-link">
             <Image src="/image5.jpeg" width={200} height={150} alt="Algorithms" />
             <div>
               <h5>CS5800 Algorithms</h5>
@@ -56,7 +56,7 @@ export default function Dashboard() {
 
         {/* Course 5 */}
         <div className="wd-dashboard-course">
-          <Link href="/Courses/5500" className="wd-dashboard-course-link">
+          <Link href="/Courses/5500/Home" className="wd-dashboard-course-link">
             <Image src="/image6.jpeg" width={200} height={150} alt="SE" />
             <div>
               <h5>CS5500 Software Engineering</h5>
@@ -68,7 +68,7 @@ export default function Dashboard() {
 
         {/* Course 6 */}
         <div className="wd-dashboard-course">
-          <Link href="/Courses/5010" className="wd-dashboard-course-link">
+          <Link href="/Courses/5010/Home" className="wd-dashboard-course-link">
             <Image src="/image7.jpeg" width={200} height={150} alt="DBMS" />
             <div>
               <h5>CS5010 Programming Design Paradigm</h5>
@@ -80,7 +80,7 @@ export default function Dashboard() {
         </div>
         {/* Course 7 */}
         <div className="wd-dashboard-course">
-          <Link href="/Courses/5700" className="wd-dashboard-course-link">
+          <Link href="/Courses/5700/Home" className="wd-dashboard-course-link">
             <Image src="/image8.jpeg" width={200} height={150} alt="Networking" />
             <div>
               <h5>CS5700 Fundamentals of Computer Networking</h5>
