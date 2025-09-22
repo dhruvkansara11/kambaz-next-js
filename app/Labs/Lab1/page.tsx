@@ -1,4 +1,9 @@
+"use client";
+import { useState } from "react";
 export default function Lab1() {
+  const [salary, setSalary] = useState(100000);
+  const [rating, setRating] = useState(4);
+  const [dob, setDob] = useState("2000-01-21");
   return (
     <div id="wd-lab1">
       <h2>Lab 1</h2>
@@ -92,14 +97,62 @@ export default function Lab1() {
         <tr>
         <td> Q1 </td>
         <td> HTML </td>
-        <td> 2/3/21 </td>
+        <td> 2/3/25 </td>
         <td> 85 </td>
         </tr>
         <tr>
         <td> Q2 </td>
         <td> CSS </td>
-        <td> 2/10/21 </td>
+        <td> 2/10/25 </td>
         <td> 90 </td>
+        </tr>
+        <tr>
+        <td> Q3 </td>
+        <td> Java </td>
+        <td> 3/11/25 </td>
+        <td> 95 </td>
+        </tr>
+        <tr>
+        <td> Q4 </td>
+        <td> Machine Learning </td>
+        <td> 4/10/25 </td>
+        <td> 100 </td>
+        </tr>
+        <tr>
+        <td> Q5 </td>
+        <td> Python </td>
+        <td> 2/15/25 </td>
+        <td> 75 </td>
+        </tr>
+        <tr>
+        <td> Q6 </td>
+        <td> Javascript </td>
+        <td> 5/25/25 </td>
+        <td> 70 </td>
+        </tr>
+        <tr>
+        <td> Q7 </td>
+        <td> React.js </td>
+        <td> 4/15/25 </td>
+        <td> 88 </td>
+        </tr>
+        <tr>
+        <td> Q8 </td>
+        <td> Node.js </td>
+        <td> 3/18/25 </td>
+        <td> 94 </td>
+        </tr>
+        <tr>
+        <td> Q9 </td>
+        <td> Swin Transformer </td>
+        <td> 2/15/25 </td>
+        <td> 83 </td>
+        </tr>
+        <tr>
+        <td> Q10 </td>
+        <td> Django </td>
+        <td> 6/14/25 </td>
+        <td> 78 </td>
         </tr>
         </tbody>
         <tfoot>
@@ -107,7 +160,7 @@ export default function Lab1() {
         <td colSpan
         =
         { 3 } > Average </td>
-        <td> 90 </td>
+        <td> 85.8 </td>
         </tr>
         </tfoot>
         </table>
@@ -119,7 +172,7 @@ export default function Lab1() {
        src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" />
         <br />
         Loading a local image: <br />
-        <img id="wd-teslabot" src="/images/teslabot.jpg" height="200px" />
+        <img id="wd-teslabot" src="/image1.jpeg" height="200px" />
         </div>
         <div id ="wd-forms" >
             <h4> Form Elements </h4>
@@ -128,12 +181,12 @@ export default function Lab1() {
             <label htmlFor = "wd-text-fields-username"> Username: </label>
             <input placeholder = "jdoe"  id = "wd-text-fields-username"/> <br />
             <label htmlFor = "wd-text-fields-password" > Password: </label>
-            <input type = "password" value = "123@#$asd" id = "wd-text-fields-password" />
+            <input type = "password"  id = "wd-text-fields-password" />
             <br />
             <label htmlFor  = "wd-text-fields-first-name" > First name: </label>
             <input type = "text" title =  "John" id = "wd-text-fields-first-name" /> <br />
             <label htmlFor =  "wd-text-fields-last-name" > Last name: </label>
-            <input type= "text"  placeholder  = "Doe" value = "Wonderland" title  = "The last name" id ="wd-text-fields-last-name"></input>
+            <input type= "text"  title  = "Doe" id ="wd-text-fields-last-name"></input>
             </form>
             </div>
             < h5 >Text boxes</ h5 >
@@ -192,11 +245,11 @@ export default function Lab1() {
             <label htmlFor="wd-text-fields-email">Email:</label>
             <input type="email" placeholder="jdoe@somewhere.com" id="wd-text-fields-email" /><br />
             <label htmlFor="wd-text-fields-salary-start">Starting salary:</label>
-            <input type="number" value="100000" placeholder="1000" id="wd-text-fields-salary-start" /><br />
+            <input type="number" value={salary} onChange={e => setSalary(+e.target.value)} /><br />
             <label htmlFor="wd-text-fields-rating">Rating:</label>
-            <input type="range" id="wd-text-fields-rating" min="1" max="5"  step="1" value="4" /><br />
+            <input type="range" min="1" max="5" step="1" value={rating} onChange={e => setRating(+e.target.value)} /><br />
             <label htmlFor="wd-text-fields-dob">Date of birth:</label>
-            <input type="date" value="2000-01-21" id="wd-text-fields-dob" /><br />
+            <input type="date" value={dob} onChange={e => setDob(e.target.value)} /><br />
             <div id="wd-links">
             <h4>Links</h4>
             <a href="https://www.lipsum.com" target="_blank">Lorem Ipsum</a><br />
