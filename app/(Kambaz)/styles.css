@@ -1,0 +1,76 @@
+body   {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: Arial,
+  Helvetica, sans-serif;
+}
+
+@media (min-width: 768px) {
+  #wd-kambaz .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+body { margin: 0;  padding: 0; }
+body * { font-family:
+         Arial, Helvetica, 
+         sans-serif; }
+@media (min-width: 768px) {
+  #wd-kambaz .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+
+#wd-assignments .bg-secondary {
+  background-color: #d0d4d9 !important;
+}
+
+#wd-assignments h3 {
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+}
+
+#wd-assignment-list li:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+#wd-assignments .border-start {
+  border-left: 4px solid #198754 !important;
+}
+
+#wd-assignments .input-group-text {
+  border-right: none;
+}
+#wd-assignments .form-control {
+  border-left: none;
+}
+.list-group.wd > .list-group-item.active {
+  background-color: white;
+  color: black !important;
+  border-left: 3px solid black !important;
+  font-weight: 600;
+}
