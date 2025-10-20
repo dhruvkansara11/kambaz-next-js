@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "CS1234",
+    "number": "CS1234",
+    "name": "React JS",
+    "description": "Full Stack Software Developer",
+    "term": "Spring 2025",
+    "instructor": "Prof. Emily Johnson",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image2.jpeg"
+  },
+  {
+    "_id": "CS5130",
+    "number": "CS5130",
+    "name": "Applied Programming and Data Processing for AI",
+    "description": "Python • Pandas • Numpy • Data Visualization",
+    "term": "Spring 2025",
+    "instructor": "Prof. David Lee",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image3.jpeg"
+  },
+  {
+    "_id": "CS5200",
+    "number": "CS5200",
+    "name": "Database Management Systems",
+    "description": "SQL • Data Modeling • Indexing • Query Optimization",
+    "term": "Spring 2025",
+    "instructor": "Prof. Olivia Brown",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image4.jpeg"
+  },
+  {
+    "_id": "CS5800",
+    "number": "CS5800",
+    "name": "Algorithms",
+    "description": "Design and Analysis • Graphs • Dynamic Programming",
+    "term": "Spring 2025",
+    "instructor": "Prof. Michael Chen",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image5.jpeg"
+  },
+  {
+    "_id": "CS5500",
+    "number": "CS5500",
+    "name": "Software Engineering",
+    "description": "Process • Agile • Testing • CI/CD Pipelines",
+    "term": "Spring 2025",
+    "instructor": "Prof. Sophia Patel",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image6.jpeg"
+  },
+  {
+    "_id": "CS5010",
+    "number": "CS5010",
+    "name": "Programming Design Paradigm",
+    "description": "Object-Oriented Java • Swing • JUnit Testing",
+    "term": "Spring 2025",
+    "instructor": "Prof. Benjamin Wright",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image7.jpeg"
+  },
+  {
+    "_id": "CS5700",
+    "number": "CS5700",
+    "name": "Fundamentals of Computer Networking",
+    "description": "OSI Model • TCP/IP • Sockets • Network Simulation",
+    "term": "Spring 2025",
+    "instructor": "Prof. Laura Singh",
+    "department": "Computer Science",
+    "credits": 4,
+    "img": "/image8.jpeg"
+  }
+]
