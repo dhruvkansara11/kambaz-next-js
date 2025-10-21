@@ -99,7 +99,7 @@ export default function KambazNavigation() {
                 href="https://www.northeastern.edu/"
                 id="wd-neu-link"
             >
-                <Image src="/images/neu.png" height={55} width={75} alt="Northeastern University" />
+                <Image src="/neu_image.png" height={55} width={75} alt="Northeastern University" />
             </ListGroupItem>
 
             {links.map((link) => (

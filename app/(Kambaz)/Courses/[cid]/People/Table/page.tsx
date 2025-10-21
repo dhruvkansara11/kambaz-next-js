@@ -1,72 +1,82 @@
 "use client";
-
+import React from "react";
 import { useParams } from "next/navigation";
+import users from "../../../../Database/users.json";
+import enrollments from "../../../../Database/enrollments.json";
 import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 
-
-import users from "../../../../Database/users.json";
-import enrollments from "../../../../Database/enrollments.json";
-
-type User = {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    loginId: string;
-    section: string;
-    role: string;
-    lastActivity: string;
-    totalActivity: string;
-};
-
-type Enrollment = { _id: string; user: string; course: string };
-
 export default function PeopleTable() {
-    const { cid } = useParams() as { cid: string };
+  const { cid } = useParams() as { cid: string };
 
-    // show only users enrolled in the current course
-    const roster = (users as User[]).filter((u) =>
-        (enrollments as Enrollment[]).some((e) => e.user === u._id && e.course === cid)
-    );
 
-    return (
-        <div id="wd-people-table">
-            <Table striped>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Login ID</th>
-                        <th>Section</th>
-                        <th>Role</th>
-                        <th>Last Activity</th>
-                        <th>Total Activity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {roster.map((u) => (
-                        <tr key={u._id}>
-                            <td className="wd-full-name text-nowrap">
-                                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                                <span className="wd-first-name">{u.firstName}</span>{" "}
-                                <span className="wd-last-name">{u.lastName}</span>
-                            </td>
-                            <td className="wd-login-id">{u.loginId}</td>
-                            <td className="wd-section">{u.section}</td>
-                            <td className="wd-role">{u.role}</td>
-                            <td className="wd-last-activity">{u.lastActivity}</td>
-                            <td className="wd-total-activity">{u.totalActivity}</td>
-                        </tr>
-                    ))}
+  const courseMap: Record<string, string> = {
+    reactapp: "CS1234",
+    webdev: "CS5200",
+    dbms: "CS5130",
+    algo: "CS5800",
+    design: "CS5500",
+    oop: "CS5010",
+    networks: "CS5700",
+  };
 
-                    {roster.length === 0 && (
-                        <tr>
-                            <td colSpan={6} className="text-muted">
-                                No people enrolled in this course.
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </Table>
-        </div>
-    );
+
+const mappedCourse =
+  courseMap[cid?.toLowerCase()] ||
+  (cid?.toUpperCase().startsWith("CS") ? cid.toUpperCase() : "CS" + cid.toUpperCase());
+
+
+  const currentEnrollments = enrollments.filter(
+    (e) => e.course.toLowerCase() === mappedCourse.toLowerCase()
+  );
+
+
+  const enrolledUserIds = currentEnrollments.map((e) => e.user);
+
+
+  const roster = users.filter((u) => enrolledUserIds.includes(u._id));
+
+  return (
+    <div id="wd-people-table" className="p-3">
+      <h5 className="mb-3">
+        People enrolled in <strong>{mappedCourse}</strong>
+      </h5>
+
+      <Table striped bordered hover responsive>
+        <thead className="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Login ID</th>
+            <th>Section</th>
+            <th>Role</th>
+            <th>Last Activity</th>
+            <th>Total Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {roster.length > 0 ? (
+            roster.map((user) => (
+              <tr key={user._id}>
+                <td>
+                  <FaUserCircle className="me-2 fs-4 text-secondary" />
+                  {user.firstName} {user.lastName}
+                </td>
+                <td>{user.loginId}</td>
+                <td>{user.section}</td>
+                <td>{user.role}</td>
+                <td>{user.lastActivity}</td>
+                <td>{user.totalActivity}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={6} className="text-center text-muted py-3">
+                No people enrolled in this course.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </Table>
+    </div>
+  );
 }
