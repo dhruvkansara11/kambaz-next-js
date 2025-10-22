@@ -37,7 +37,7 @@ export default function Assignments({ params }: { params: { cid: string } }) {
 
   return (
     <div id="wd-assignments" className="p-3">
-      {/* ---------- Top Row: Search + Buttons ---------- */}
+
       <div className="d-flex align-items-center justify-content-between mb-3">
         <div className="flex-grow-1" style={{ maxWidth: 420 }}>
           <InputGroup>
@@ -57,7 +57,7 @@ export default function Assignments({ params }: { params: { cid: string } }) {
         </div>
       </div>
 
-      {/* ---------- Assignment Group Container ---------- */}
+
       <div className="border rounded mb-3">
         {/* Header Bar */}
         <div className="bg-secondary px-3 py-2 d-flex align-items-center border-bottom">
@@ -75,7 +75,6 @@ export default function Assignments({ params }: { params: { cid: string } }) {
           <IoEllipsisVertical className="fs-5 text-secondary" />
         </div>
 
-        {/* Assignment List */}
         <div className="border-start border-4 border-success bg-white">
           <ul id="wd-assignment-list" className="list-unstyled m-0">
             {assignmentData.map((a) => (
