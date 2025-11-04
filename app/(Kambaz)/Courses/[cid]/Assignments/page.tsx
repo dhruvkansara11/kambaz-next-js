@@ -1,109 +1,127 @@
 "use client";
 
+import { Badge, Button, Form, ListGroup, ListGroupItem } from "react-bootstrap";
 import Link from "next/link";
-import { Button, Form, InputGroup, Badge } from "react-bootstrap";
-import { FiSearch } from "react-icons/fi";
-import { BsGripVertical } from "react-icons/bs";
+import { BsGripVertical, BsPlus, BsSearch } from "react-icons/bs";
+import { PiNotePencil } from "react-icons/pi";
+import { FaCheckCircle } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { FaPlus, FaCaretDown } from "react-icons/fa6";
-import GreenCheckmark from "../Modules/GreenCheckmark";
+import { VscTriangleDown } from "react-icons/vsc";
+import { useParams } from "next/navigation";
 
-export default function Assignments({ params }: { params: { cid: string } }) {
-  const { cid } = params;
+import * as db from "../../../Database/index"; // correct import path
 
-  const assignmentData = [
-    {
-      id: "123",
-      title: "A1 - ENV + HTML",
-      available: "Not available until May 6 at 12:00am",
-      due: "Due May 13 at 11:59pm",
-      points: "100 pts",
-    },
-    {
-      id: "124",
-      title: "A2 - CSS + BOOTSTRAP",
-      available: "Not available until May 13 at 12:00am",
-      due: "Due May 20 at 11:59pm",
-      points: "100 pts",
-    },
-    {
-      id: "125",
-      title: "A3 - JAVASCRIPT + REACT",
-      available: "Not available until May 20 at 12:00am",
-      due: "Due May 27 at 11:59pm",
-      points: "100 pts",
-    },
-  ];
+export default function AssignmentList() {
+  const { cid } = useParams(); // e.g., CS5200
+  const assignments = db.assignments || [];
+
+  // Filter assignments belonging to this course
+  const courseAssignments = assignments.filter((a) => a.course === cid);
 
   return (
     <div id="wd-assignments" className="p-3">
-
-      <div className="d-flex align-items-center justify-content-between mb-3">
-        <div className="flex-grow-1" style={{ maxWidth: 420 }}>
-          <InputGroup>
-            <InputGroup.Text className="bg-white">
-              <FiSearch />
-            </InputGroup.Text>
-            <Form.Control id="wd-search-assignment" placeholder="Search..." />
-          </InputGroup>
+      {/* ===== Top Controls ===== */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        {/* Search bar */}
+        <div className="position-relative" style={{ maxWidth: "300px" }}>
+          <BsSearch className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
+          <Form.Control
+            type="text"
+            placeholder="Search..."
+            id="wd-search-assignment"
+            className="ps-5"
+          />
         </div>
-        <div className="ms-3">
-          <Button id="wd-add-assignment-group" variant="secondary" className="me-2">
-            <FaPlus className="me-1" /> Group
+
+        {/* Action buttons */}
+        <div>
+          <Button
+            variant="secondary"
+            size="sm"
+            className="me-2"
+            id="wd-add-assignment-group"
+          >
+            <BsPlus className="me-1 fs-6" /> Group
           </Button>
-          <Button id="wd-add-assignment" variant="danger">
-            <FaPlus className="me-1" /> Assignment
+          <Button variant="danger" size="sm" id="wd-add-assignment">
+            <BsPlus className="me-1 fs-6" /> Assignment
           </Button>
         </div>
       </div>
 
-
-      <div className="border rounded mb-3">
-        {/* Header Bar */}
-        <div className="bg-secondary px-3 py-2 d-flex align-items-center border-bottom">
-          <BsGripVertical className="me-2 text-dark" />
-          <FaCaretDown className="me-2 fs-5 text-dark" />
-          <h3 id="wd-assignments-title" className="m-0 me-auto fw-semibold">
-            ASSIGNMENTS
-          </h3>
-          <Badge bg="light" text="dark" className="me-2 border px-3 py-2">
+      {/* ===== Section Header ===== */}
+      <div className="d-flex justify-content-between align-items-center bg-light border p-2">
+        <div className="d-flex align-items-center">
+          <BsGripVertical className="me-3 fs-4 text-muted" />
+          <VscTriangleDown className="me-2" />
+          <div className="fw-bold">ASSIGNMENTS</div>
+        </div>
+        <div className="d-flex align-items-center">
+          <Badge pill bg="light" text="dark" className="fw-normal me-2 border">
             40% of Total
           </Badge>
-          <Button size="sm" variant="light" className="border me-1 rounded-circle">
-            <FaPlus />
-          </Button>
-          <IoEllipsisVertical className="fs-5 text-secondary" />
-        </div>
-
-        <div className="border-start border-4 border-success bg-white">
-          <ul id="wd-assignment-list" className="list-unstyled m-0">
-            {assignmentData.map((a) => (
-              <li key={a.id} className="wd-assignment-list-item p-3 border-bottom">
-                <div className="d-flex align-items-start">
-                  <BsGripVertical className="me-2 text-secondary" />
-                  <div className="flex-grow-1">
-                    <Link
-                      href={`/Courses/${cid}/Assignments/${a.id}`}
-                      className="fw-semibold text-decoration-none text-dark"
-                    >
-                      {a.title}
-                    </Link>
-                    <div className="text-muted small mt-1">
-                      <span className="text-danger fw-semibold">Multiple Modules</span>
-                      &nbsp;|&nbsp; {a.available} &nbsp;|&nbsp;
-                      <strong>{a.due}</strong> &nbsp;|&nbsp; {a.points}
-                    </div>
-                  </div>
-                  <div className="ms-2 d-inline-flex align-items-center gap-2">
-                    <GreenCheckmark />
-                    <IoEllipsisVertical className="fs-5 text-secondary" />
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <BsPlus className="fs-4 me-2" />
+          <IoEllipsisVertical className="fs-4 text-muted" />
         </div>
       </div>
+
+      {/* ===== Assignment List ===== */}
+      <ListGroup id="wd-assignment-list" className="list-group-flush">
+        {courseAssignments.length === 0 ? (
+          <ListGroupItem className="text-muted small">
+            No assignments found for this course.
+          </ListGroupItem>
+        ) : (
+          courseAssignments.map((a) => (
+            <ListGroupItem
+              key={a._id}
+              className="d-flex p-0 border-0 border-bottom rounded-0"
+            >
+              {/* Left green bar */}
+              <span
+                className="bg-success align-self-stretch"
+                style={{ width: 4 }}
+              />
+
+              {/* Main Content */}
+              <div className="d-flex align-items-start w-100 p-2 ps-3">
+                <BsGripVertical className="me-2 fs-4 text-muted" />
+                <PiNotePencil className="me-3 fs-4 text-success" />
+
+                <div className="flex-grow-1">
+                  <Link
+                    href={`/Courses/${cid}/Assignments/${a._id}`}
+                    className="fw-bold text-decoration-none text-dark"
+                  >
+                    {a.title}
+                  </Link>
+
+                  {/* Assignment meta info */}
+                  <div className="text-muted small">
+                    <span className="text-danger">Multiple Modules</span> |{" "}
+                    <b>Available from</b>{" "}
+                    {new Date(a.availableFrom).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })}{" "}
+                    | <b>Due</b>{" "}
+                    {new Date(a.due).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })}{" "}
+                    | <b>{a.points} pts</b>
+                  </div>
+                </div>
+
+                <div className="d-flex align-items-center ms-2">
+                  <FaCheckCircle className="text-success me-3 fs-5" />
+                  <IoEllipsisVertical className="fs-4 text-muted" />
+                </div>
+              </div>
+            </ListGroupItem>
+          ))
+        )}
+      </ListGroup>
     </div>
   );
 }

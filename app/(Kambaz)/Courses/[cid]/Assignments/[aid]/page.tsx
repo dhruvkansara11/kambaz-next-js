@@ -1,229 +1,226 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
+import Link from "next/link";
+import { Form, Row, Col } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import Select from "react-select";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default function AssignmentEditor({
-  params,
-}: {
-  params: { cid: string; aid: string };
-}) {
-  const [assignees, setAssignees] = useState<string[]>(["Everyone"]);
+import * as db from "../../../../Database/index"; // explicit import
 
-  const handleAssigneesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = Array.from(e.target.selectedOptions, (o) => o.value);
-    setAssignees(selected);
-  };
+// Dropdown options
+const assignToOptions = [
+  { value: "everyone", label: "Everyone" },
+  { value: "section1", label: "Section 1" },
+  { value: "section2", label: "Section 2" },
+  { value: "admin", label: "Admins Only" },
+];
+
+export default function AssignmentEditor() {
+  const { cid, aid } = useParams(); // e.g., CS5200 + CS5200-A1
+  const assignments = db.assignments || [];
+
+  // Find current assignment
+  const assignment = assignments.find((a) => a._id === aid);
+
+  // Initialize date states (parse from JSON fields)
+  const [dueDate, setDueDate] = useState<Date | null>(
+    assignment?.due ? new Date(assignment.due) : null
+  );
+  const [availableFromDate, setAvailableFromDate] = useState<Date | null>(
+    assignment?.availableFrom ? new Date(assignment.availableFrom) : null
+  );
+  const [untilDate, setUntilDate] = useState<Date | null>(
+    assignment?.until ? new Date(assignment.until) : null
+  );
+
+  // Dropdown selection type
+  const [selectedOptions, setSelectedOptions] = useState(
+    assignment?.assignTo?.map((label) => ({
+      value: label.toLowerCase().replace(/\s+/g, ""),
+      label,
+    })) || [assignToOptions[0]]
+  );
+
+  if (!assignment) {
+    return (
+      <div className="p-3">
+        <h4 className="text-danger">Assignment not found</h4>
+        <p>
+          No assignment found for ID <b>{aid}</b> in course <b>{cid}</b>.
+        </p>
+        <Link
+          href={`/Courses/${cid}/Assignments`}
+          className="btn btn-secondary mt-3"
+        >
+          Back to Assignments
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div id="wd-assignments-editor" className="p-3" style={{ maxWidth: 720, margin: "0 auto" }}>
-      {/* Assignment Name */}
-      <div className="row mb-3 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label htmlFor="wd-name" className="col-form-label">
-            Assignment Name
-          </label>
-        </div>
-        <div className="col-sm-9">
-          <input id="wd-name" className="form-control" defaultValue="A1 - ENV + HTML" />
-        </div>
-      </div>
+    <div id="wd-assignments-editor" className="p-3">
+      {/* ===== Assignment Name ===== */}
+      <Form.Group className="mb-3">
+        <Form.Label>Assignment Name</Form.Label>
+        <Form.Control type="text" defaultValue={assignment.title} />
+      </Form.Group>
 
-      {/* Description */}
-      <div className="row mb-4 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label htmlFor="wd-description" className="col-form-label">
-            Description
-          </label>
-        </div>
-        <div className="col-sm-9">
-          <div className="form-control" style={{ minHeight: 160 }}>
-            <p className="mb-2">
-              The assignment is available online. Submit a link to the landing page of your Web application running on
-              Netlify.
-            </p>
-            <ul className="mb-2">
-              <li>Your full name and section</li>
-              <li>Links to each of the lab assignments</li>
-              <li>Link to the Kanbas application</li>
-              <li>Links to all relevant source code repositories</li>
-            </ul>
-            <p className="mb-0">
-              The Kanbas application should include a link to navigate back to the landing page.
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* ===== Description ===== */}
+      <Form.Group className="mb-3">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={6}
+          defaultValue={assignment.description}
+        />
+      </Form.Group>
 
-      {/* Points */}
-      <div className="row mb-3 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label htmlFor="wd-points" className="col-form-label">
-            Points
-          </label>
-        </div>
-        <div className="col-sm-9">
-          <input id="wd-points" type="number" className="form-control" defaultValue={100} />
-        </div>
-      </div>
+      {/* ===== Points ===== */}
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm={2}>
+          Points
+        </Form.Label>
+        <Col sm={4}>
+          <Form.Control type="number" defaultValue={assignment.points} />
+        </Col>
+      </Form.Group>
 
-      {/* Assignment Group */}
-      <div className="row mb-3 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label htmlFor="wd-assignment-group" className="col-form-label">
-            Assignment Group
-          </label>
-        </div>
-        <div className="col-sm-9">
-          <select id="wd-assignment-group" className="form-select" defaultValue="ASSIGNMENTS">
-            <option value="ASSIGNMENTS">ASSIGNMENTS</option>
-            <option value="QUIZZES">QUIZZES</option>
-            <option value="EXAMS">EXAMS</option>
-            <option value="PROJECT">PROJECT</option>
-          </select>
-        </div>
-      </div>
+      {/* ===== Assignment Group ===== */}
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm={2}>
+          Assignment Group
+        </Form.Label>
+        <Col sm={4}>
+          <Form.Select defaultValue="ASSIGNMENTS">
+            <option>ASSIGNMENTS</option>
+            <option>QUIZZES</option>
+            <option>EXAMS</option>
+            <option>PROJECTS</option>
+          </Form.Select>
+        </Col>
+      </Form.Group>
 
-      {/* Display Grade as */}
-      <div className="row mb-3 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label htmlFor="wd-display-grade-as" className="col-form-label">
-            Display Grade as
-          </label>
-        </div>
-        <div className="col-sm-9">
-          <select id="wd-display-grade-as" className="form-select" defaultValue="Percentage">
-            <option value="Percentage">Percentage</option>
-            <option value="Points">Points</option>
-            <option value="Letter Grade">Letter Grade</option>
-            <option value="GPA">GPA</option>
-          </select>
-        </div>
-      </div>
+      {/* ===== Display Grade As ===== */}
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm={2}>
+          Display Grade as
+        </Form.Label>
+        <Col sm={4}>
+          <Form.Select defaultValue="Points">
+            <option>Percentage</option>
+            <option>Points</option>
+            <option>Complete/Incomplete</option>
+          </Form.Select>
+        </Col>
+      </Form.Group>
 
-      {/* Submission Type + Online Entry Options */}
-      <div className="row mb-3 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label htmlFor="wd-submission-type" className="col-form-label">
-            Submission Type
-          </label>
-        </div>
-        <div className="col-sm-9">
-          <select id="wd-submission-type" className="form-select mb-2" defaultValue="Online">
-            <option value="Online">Online</option>
-            <option value="On Paper">On Paper</option>
-            <option value="No Submission">No Submission</option>
-          </select>
+      {/* ===== Submission Type ===== */}
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm={2}>
+          Submission Type
+        </Form.Label>
+        <Col sm={4} className="mt-2 p-3 border rounded">
+          <Form.Select defaultValue="Online">
+            <option>Online</option>
+            <option>On Paper</option>
+            <option>No Submission</option>
+          </Form.Select>
 
-          <div className="border rounded p-3">
-            <div className="fw-semibold mb-2">Online Entry Options</div>
-
+          <div className="mt-2">
+            <div className="fw-bold">Online Entry Options</div>
             {[
-              { id: "wd-text-entry", label: "Text Entry" },
-              { id: "wd-website-url", label: "Website URL" },
-              { id: "wd-media-recordings", label: "Media Recordings" },
-              { id: "wd-student-annotation", label: "Student Annotation" },
-              { id: "wd-file-uploads", label: "File Uploads" },
-            ].map((opt) => (
-              <div className="form-check mb-1" key={opt.id}>
-                <input className="form-check-input" type="checkbox" id={opt.id} defaultChecked />
-                <label className="form-check-label" htmlFor={opt.id}>
-                  {opt.label}
-                </label>
-              </div>
+              "Text Entry",
+              "Website URL",
+              "Media Recordings",
+              "Student Annotation",
+              "File Uploads",
+            ].map((option) => (
+              <Form.Check
+                key={option}
+                type="checkbox"
+                label={option}
+                defaultChecked={
+                  assignment?.onlineEntryOptions?.includes(option) || false
+                }
+              />
             ))}
           </div>
-        </div>
-      </div>
+        </Col>
+      </Form.Group>
 
-      {/* Assign Section */}
-      <div className="row mb-3 align-items-start">
-        <div className="col-sm-3 text-sm-end">
-          <label className="col-form-label">Assign</label>
-        </div>
-        <div className="col-sm-9">
-          <div className="border rounded p-3">
-            {/* Assign To */}
-            <div className="mb-3">
-              <label htmlFor="wd-assign-to" className="form-label">
-                Assign to
-              </label>
-              <select
-                id="wd-assign-to"
-                className="form-select"
-                multiple
-                value={assignees}
-                onChange={handleAssigneesChange}
-              >
-                <option value="Everyone">Everyone</option>
-                <option value="Section A">Section A</option>
-                <option value="Section B">Section B</option>
-                <option value="Section C">Section C</option>
-              </select>
-
-              {/* Canvas-style chips */}
-              <div className="mt-2">
-                {assignees.map((a) => (
-                  <span key={a} className="badge bg-light text-dark me-2">
-                    {a}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Dates */}
-            <div className="row g-3">
-              <div className="col-md-6">
-                <label htmlFor="wd-due-date" className="form-label">
-                  Due
-                </label>
-                <input
-                  id="wd-due-date"
-                  type="datetime-local"
-                  className="form-control"
-                  defaultValue="2024-05-13T23:59"
-                />
-              </div>
-              <div className="col-md-6">
-                <div className="row">
-                  <div className="col-6">
-                    <label htmlFor="wd-available-from" className="form-label">
-                      Available from
-                    </label>
-                    <input
-                      id="wd-available-from"
-                      type="datetime-local"
-                      className="form-control"
-                      defaultValue="2024-05-06T12:00"
-                    />
-                  </div>
-                  <div className="col-6">
-                    <label htmlFor="wd-available-until" className="form-label">
-                      Until
-                    </label>
-                    <input
-                      id="wd-available-until"
-                      type="datetime-local"
-                      className="form-control"
-                      defaultValue="2024-05-20T12:00"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* ===== Assign Section ===== */}
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm={2}>
+          Assign
+        </Form.Label>
+        <Col sm={6} className="p-3 border rounded">
+          {/* Assign To */}
+          <div className="mb-3">
+            <Form.Label>Assign to</Form.Label>
+            <Select
+              defaultValue={selectedOptions}
+              isMulti
+              options={assignToOptions}
+              classNamePrefix="select"
+              placeholder="Select..."
+              onChange={(opts) => setSelectedOptions([...opts])} 
+            />
           </div>
-        </div>
-      </div>
 
-      {/* Buttons */}
-      <div className="row mt-4">
-        <div className="col-sm-9 offset-sm-3">
-          <button type="button" id="wd-cancel" className="btn btn-light me-2">
-            Cancel
-          </button>
-          <button type="button" id="wd-save" className="btn btn-danger">
-            Save
-          </button>
-        </div>
+          {/* Due Date */}
+          <div className="mb-3">
+            <Form.Label className="d-block">Due</Form.Label>
+            <DatePicker
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
+              showTimeSelect
+              dateFormat="MMMM d, yyyy, h:mm aa"
+              className="form-control"
+            />
+          </div>
+
+          {/* Available From / Until */}
+          <Row>
+            <Col>
+              <Form.Label className="d-block">Available from</Form.Label>
+              <DatePicker
+                selected={availableFromDate}
+                onChange={(date) => setAvailableFromDate(date)}
+                showTimeSelect
+                dateFormat="MMMM d, yyyy, h:mm aa"
+                className="form-control"
+              />
+            </Col>
+            <Col>
+              <Form.Label className="d-block">Until</Form.Label>
+              <DatePicker
+                selected={untilDate}
+                onChange={(date) => setUntilDate(date)}
+                showTimeSelect
+                placeholderText="Click to select a date"
+                dateFormat="MMMM d, yyyy, h:mm aa"
+                className="form-control"
+              />
+            </Col>
+          </Row>
+        </Col>
+      </Form.Group>
+
+      {/* ===== Buttons ===== */}
+      <div className="d-flex justify-content-end mt-4">
+        <Link
+          href={`/Courses/${cid}/Assignments`}
+          className="btn btn-secondary me-2"
+        >
+          Cancel
+        </Link>
+        <Link href={`/Courses/${cid}/Assignments`} className="btn btn-danger">
+          Save
+        </Link>
       </div>
     </div>
   );

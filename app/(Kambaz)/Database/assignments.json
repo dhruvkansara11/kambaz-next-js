@@ -6,7 +6,13 @@
     "points": 100,
     "due": "2025-02-10T23:59:00",
     "availableFrom": "2025-02-03T00:00:00",
-    "description": "Build a simple React app using components and JSX."
+    "until": null,
+    "description": "Build a simple React app using components and JSX.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS1234-A2",
@@ -15,7 +21,13 @@
     "points": 100,
     "due": "2025-02-17T23:59:00",
     "availableFrom": "2025-02-10T00:00:00",
-    "description": "Use props and state to create an interactive component."
+    "until": null,
+    "description": "Use props and state to create an interactive component.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS1234-A3",
@@ -24,7 +36,13 @@
     "points": 100,
     "due": "2025-02-24T23:59:00",
     "availableFrom": "2025-02-17T00:00:00",
-    "description": "Implement navigation between pages using React Router."
+    "until": null,
+    "description": "Implement navigation between pages using React Router.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
 
   {
@@ -34,7 +52,13 @@
     "points": 100,
     "due": "2025-02-11T23:59:00",
     "availableFrom": "2025-02-04T00:00:00",
-    "description": "Solve data processing tasks using Python basics."
+    "until": null,
+    "description": "Solve data processing tasks using Python basics.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS5130-A2",
@@ -43,7 +67,13 @@
     "points": 100,
     "due": "2025-02-18T23:59:00",
     "availableFrom": "2025-02-11T00:00:00",
-    "description": "Clean and merge multiple CSV files using Pandas."
+    "until": null,
+    "description": "Clean and merge multiple CSV files using Pandas.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS5130-A3",
@@ -52,7 +82,13 @@
     "points": 100,
     "due": "2025-02-25T23:59:00",
     "availableFrom": "2025-02-18T00:00:00",
-    "description": "Perform matrix operations and visualize results with Matplotlib."
+    "until": null,
+    "description": "Perform matrix operations and visualize results with Matplotlib.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
 
   {
@@ -62,7 +98,13 @@
     "points": 100,
     "due": "2025-02-12T23:59:00",
     "availableFrom": "2025-02-05T00:00:00",
-    "description": "Design an ER diagram for a university database."
+    "until": null,
+    "description": "Design an ER diagram for a university database.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS5200-A2",
@@ -71,7 +113,13 @@
     "points": 100,
     "due": "2025-02-19T23:59:00",
     "availableFrom": "2025-02-12T00:00:00",
-    "description": "Write SQL queries to extract and aggregate data."
+    "until": null,
+    "description": "Write SQL queries to extract and aggregate data.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS5200-A3",
@@ -80,7 +128,13 @@
     "points": 100,
     "due": "2025-02-26T23:59:00",
     "availableFrom": "2025-02-19T00:00:00",
-    "description": "Improve query performance using indexing and explain plans."
+    "until": null,
+    "description": "Improve query performance using indexing and explain plans.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
 
   {
@@ -90,7 +144,13 @@
     "points": 100,
     "due": "2025-02-13T23:59:00",
     "availableFrom": "2025-02-06T00:00:00",
-    "description": "Implement and compare time complexity of sorting algorithms."
+    "until": null,
+    "description": "Implement and compare time complexity of sorting algorithms.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS5800-A2",
@@ -99,7 +159,13 @@
     "points": 100,
     "due": "2025-02-20T23:59:00",
     "availableFrom": "2025-02-13T00:00:00",
-    "description": "Solve problems using divide-and-conquer techniques."
+    "until": null,
+    "description": "Solve problems using divide-and-conquer techniques.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   },
   {
     "_id": "CS5800-A3",
@@ -108,90 +174,12 @@
     "points": 100,
     "due": "2025-02-27T23:59:00",
     "availableFrom": "2025-02-20T00:00:00",
-    "description": "Implement BFS, DFS, and Dijkstra’s algorithm."
-  },
-
-  {
-    "_id": "CS5500-A1",
-    "course": "CS5500",
-    "title": "A1 – Software Development Lifecycle",
-    "points": 100,
-    "due": "2025-02-14T23:59:00",
-    "availableFrom": "2025-02-07T00:00:00",
-    "description": "Document SDLC phases for a sample software project."
-  },
-  {
-    "_id": "CS5500-A2",
-    "course": "CS5500",
-    "title": "A2 – Unit Testing & CI/CD",
-    "points": 100,
-    "due": "2025-02-21T23:59:00",
-    "availableFrom": "2025-02-14T00:00:00",
-    "description": "Write JUnit tests and set up a GitHub Actions CI pipeline."
-  },
-  {
-    "_id": "CS5500-A3",
-    "course": "CS5500",
-    "title": "A3 – Agile and Scrum",
-    "points": 100,
-    "due": "2025-02-28T23:59:00",
-    "availableFrom": "2025-02-21T00:00:00",
-    "description": "Plan a sprint and create user stories for a small team project."
-  },
-
-  {
-    "_id": "CS5010-A1",
-    "course": "CS5010",
-    "title": "A1 – Java Review",
-    "points": 100,
-    "due": "2025-02-15T23:59:00",
-    "availableFrom": "2025-02-08T00:00:00",
-    "description": "Write object-oriented Java programs using classes and methods."
-  },
-  {
-    "_id": "CS5010-A2",
-    "course": "CS5010",
-    "title": "A2 – Design Patterns",
-    "points": 100,
-    "due": "2025-02-22T23:59:00",
-    "availableFrom": "2025-02-15T00:00:00",
-    "description": "Implement common design patterns in Java."
-  },
-  {
-    "_id": "CS5010-A3",
-    "course": "CS5010",
-    "title": "A3 – GUI with Swing",
-    "points": 100,
-    "due": "2025-03-01T23:59:00",
-    "availableFrom": "2025-02-22T00:00:00",
-    "description": "Develop a small desktop GUI application using Swing."
-  },
-
-  {
-    "_id": "CS5700-A1",
-    "course": "CS5700",
-    "title": "A1 – Network Layers",
-    "points": 100,
-    "due": "2025-02-16T23:59:00",
-    "availableFrom": "2025-02-09T00:00:00",
-    "description": "Describe the OSI and TCP/IP models in detail."
-  },
-  {
-    "_id": "CS5700-A2",
-    "course": "CS5700",
-    "title": "A2 – Socket Programming",
-    "points": 100,
-    "due": "2025-02-23T23:59:00",
-    "availableFrom": "2025-02-16T00:00:00",
-    "description": "Implement a simple client-server chat using sockets."
-  },
-  {
-    "_id": "CS5700-A3",
-    "course": "CS5700",
-    "title": "A3 – Network Simulation",
-    "points": 100,
-    "due": "2025-03-02T23:59:00",
-    "availableFrom": "2025-02-23T00:00:00",
-    "description": "Simulate packet transmission and latency in a small network."
+    "until": null,
+    "description": "Implement BFS, DFS, and Dijkstra’s algorithm.",
+    "assignTo": ["Everyone"],
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "Points",
+    "submissionType": "Online",
+    "onlineEntryOptions": ["Text Entry", "File Uploads"]
   }
 ]

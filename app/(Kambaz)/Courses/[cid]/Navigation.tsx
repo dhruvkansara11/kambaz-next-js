@@ -2,38 +2,47 @@
 
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
+import "../../styles.css";
 
 export default function CourseNavigation() {
-    const pathname = usePathname();
-    const { cid } = (useParams() as { cid?: string }) ?? {};
+  const pathname = usePathname();
+  const params = useParams(); // get dynamic route parameter
+  const { cid } = params; // course ID from /Courses/[cid]/...
+  console.log("in courses nav", params);
+  const links = [
+    "Home",
+    "Modules",
+    "Piazza",
+    "Zoom",
+    "Assignments",
+    "Quizzes",
+    "Grades",
+    "People",
+  ];
 
-    
-    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades", "People"] as const;
-
-    
-    const idOf = (name: (typeof links)[number]) => `wd-course-${name.toLowerCase()}-link`;
-    const hrefOf = (name: (typeof links)[number]) =>
-        `/Courses/${encodeURIComponent(cid ?? "")}/${name === "People" ? "People/Table" : name}`;
-    const matchOf = (name: (typeof links)[number]) =>
-        `/Courses/${encodeURIComponent(cid ?? "")}/${name === "People" ? "People" : name}`;
-
-    return (
-        <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
-            {links.map((name) => {
-                const href = hrefOf(name);
-                const match = matchOf(name);
-                const isActive = pathname.startsWith(match);
-                return (
-                    <Link
-                        key={name}
-                        id={idOf(name)}
-                        href={href}
-                        className={`list-group-item border-0 ${isActive ? "active" : "text-danger"}`}
-                    >
-                        {name}
-                    </Link>
-                );
-            })}
-        </div>
-    );
+  return (
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+      {links.map((link, index) => {
+        // Construct href dynamically using the course id
+        let href = `/Courses/${cid}/${link}`;
+        // Determine if this link should be highlighted
+        const isActive = pathname.startsWith(href);
+        if (link == "People") {
+          href += "/Table";
+        }
+        return (
+          <Link
+            key={index}
+            href={href}
+            id={`wd-course-${link.toLowerCase()}-link`}
+            className={`list-group-item border-0 ${
+              isActive ? "active" : "text-danger"
+            }`}
+          >
+            {link}
+          </Link>
+        );
+      })}
+    </div>
+  );
 }
