@@ -1,26 +1,70 @@
 "use client";
 
-import { Badge, Button, Form, ListGroup, ListGroupItem } from "react-bootstrap";
+import { useState } from "react";
+import { useParams, redirect } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import {
+  Badge,
+  Button,
+  Container,
+  Form,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
+
 import { BsGripVertical, BsPlus, BsSearch } from "react-icons/bs";
-import { PiNotePencil } from "react-icons/pi";
-import { FaCheckCircle } from "react-icons/fa";
-import { IoEllipsisVertical } from "react-icons/io5";
 import { VscTriangleDown } from "react-icons/vsc";
-import { useParams } from "next/navigation";
+import { PiNotePencil } from "react-icons/pi";
+import { FaTrash, FaCheckCircle } from "react-icons/fa";
+import { IoEllipsisVertical } from "react-icons/io5";
 
-import * as db from "../../../Database/index"; // correct import path
+import { deleteAssignment } from "./reducer";
+import AssignmentDeleter from "./AssignmentDeleter";
+import AssignmentsControls from "./AssignmentsControls";
 
-export default function AssignmentList() {
-  const { cid } = useParams(); // e.g., CS5200
-  const assignments = db.assignments || [];
+const formatDate = (dateString: string) =>
+  new Date(dateString).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 
-  // Filter assignments belonging to this course
-  const courseAssignments = assignments.filter((a) => a.course === cid);
+export default function Assignments() {
+  const { cid } = useParams();
+  const dispatch = useDispatch();
+
+  // ✅ Safe selectors
+  const assignmentsState = useSelector((state: any) => state.assignmentsReducer);
+  const accountState = useSelector((state: any) => state.accountReducer);
+
+  const assignments = assignmentsState?.assignments || [];
+  const currentUser = accountState?.currentUser;
+
+  // ✅ Redirect if not signed in
+  if (!currentUser) {
+    redirect("/Account/Signin");
+  }
+
+  const [show, setShow] = useState(false);
+  const [aid, setAid] = useState<string>("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = (id: string) => {
+    setAid(id);
+    setShow(true);
+  };
+
+  // Filter assignments for this course
+  const courseAssignments = assignments.filter(
+    (a: any) => a.course === cid
+  );
 
   return (
-    <div id="wd-assignments" className="p-3">
+    <Container id="wd-assignments" className="p-3">
       {/* ===== Top Controls ===== */}
+      <AssignmentsControls />
+
       <div className="d-flex justify-content-between align-items-center mb-3">
         {/* Search bar */}
         <div className="position-relative" style={{ maxWidth: "300px" }}>
@@ -33,19 +77,23 @@ export default function AssignmentList() {
           />
         </div>
 
-        {/* Action buttons */}
+        {/* Add buttons (faculty only) */}
         <div>
-          <Button
-            variant="secondary"
-            size="sm"
-            className="me-2"
-            id="wd-add-assignment-group"
-          >
-            <BsPlus className="me-1 fs-6" /> Group
-          </Button>
-          <Button variant="danger" size="sm" id="wd-add-assignment">
-            <BsPlus className="me-1 fs-6" /> Assignment
-          </Button>
+          {currentUser?.role === "FACULTY" && (
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="me-2"
+                id="wd-add-assignment-group"
+              >
+                <BsPlus className="me-1 fs-6" /> Group
+              </Button>
+              <Button variant="danger" size="sm" id="wd-add-assignment">
+                <BsPlus className="me-1 fs-6" /> Assignment
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
@@ -72,7 +120,7 @@ export default function AssignmentList() {
             No assignments found for this course.
           </ListGroupItem>
         ) : (
-          courseAssignments.map((a) => (
+          courseAssignments.map((a: any) => (
             <ListGroupItem
               key={a._id}
               className="d-flex p-0 border-0 border-bottom rounded-0"
@@ -96,25 +144,30 @@ export default function AssignmentList() {
                     {a.title}
                   </Link>
 
-                  {/* Assignment meta info */}
-                  <div className="text-muted small">
-                    <span className="text-danger">Multiple Modules</span> |{" "}
-                    <b>Available from</b>{" "}
-                    {new Date(a.availableFrom).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                    })}{" "}
-                    | <b>Due</b>{" "}
-                    {new Date(a.due).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                    })}{" "}
-                    | <b>{a.points} pts</b>
+                  <div className="text-muted small mt-1">
+                    <span className="text-danger">
+                      {a.modules
+                        ? a.modules.length > 1
+                          ? "Multiple Modules"
+                          : "Single Module"
+                        : "No Module"}
+                    </span>{" "}
+                    | <b>Available from</b> {formatDate(a.availableDate)} |{" "}
+                    <b>Due</b> {formatDate(a.dueDate)} |{" "}
+                    <b>{a.points} pts</b>
                   </div>
                 </div>
 
                 <div className="d-flex align-items-center ms-2">
-                  <FaCheckCircle className="text-success me-3 fs-5" />
+                  {currentUser?.role === "FACULTY" ? (
+                    <FaTrash
+                      className="text-danger me-3 fs-5"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleShow(a._id)}
+                    />
+                  ) : (
+                    <FaCheckCircle className="text-success me-3 fs-5" />
+                  )}
                   <IoEllipsisVertical className="fs-4 text-muted" />
                 </div>
               </div>
@@ -122,6 +175,25 @@ export default function AssignmentList() {
           ))
         )}
       </ListGroup>
-    </div>
+
+      {/* ===== Delete Confirmation Modal ===== */}
+      <AssignmentDeleter
+        show={show}
+        handleClose={handleClose}
+        dialogTitle="Delete Assignment"
+        assignmentName={
+          assignments.find((x: any) => x._id === aid)?.title || ""
+        }
+        deleteAssignment={() => {
+          const assignmentToDelete = assignments.find(
+            (x: any) => x._id === aid
+          );
+          if (assignmentToDelete) {
+            dispatch(deleteAssignment(assignmentToDelete));
+            handleClose();
+          }
+        }}
+      />
+    </Container>
   );
 }

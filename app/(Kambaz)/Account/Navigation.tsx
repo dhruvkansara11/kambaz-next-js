@@ -2,29 +2,40 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 export default function AccountNavigation() {
-    const pathname = usePathname();
-    const items = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const pathname = usePathname();
+
+  // Dynamic links: show Profile if logged in, else Signin + Signup
+  const items = currentUser
+    ? [
+        { id: "wd-account-profile-link", label: "Profile", href: "/Account/Profile" },
+      ]
+    : [
         { id: "wd-account-signin-link", label: "Signin", href: "/Account/Signin" },
         { id: "wd-account-signup-link", label: "Signup", href: "/Account/Signup" },
-        { id: "wd-account-profile-link", label: "Profile", href: "/Account/Profile" },
-    ];
-    return (
-        <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-            {items.map((it) => {
-                const active = pathname.startsWith(it.href);
-                return (
-                    <Link
-                        key={it.id}
-                        id={it.id}
-                        href={it.href}
-                        className={`list-group-item border-0 ${active ? "active" : "text-danger"}`}
-                    >
-                        {it.label}
-                    </Link>
-                );
-            })}
-        </div>
-    );
+      ];
+
+  return (
+    <div id="wd-account-navigation" className="list-group fs-5 rounded-0">
+      {items.map((item) => {
+        const active = pathname.startsWith(item.href);
+        return (
+          <Link
+            key={item.id}
+            id={item.id}
+            href={item.href}
+            className={`list-group-item border-0 ${
+              active ? "active text-white bg-danger" : "text-danger"
+            }`}
+          >
+            {item.label}
+          </Link>
+        );
+      })}
+    </div>
+  );
 }

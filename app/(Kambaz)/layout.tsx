@@ -1,20 +1,28 @@
+"use client";
+
 import { ReactNode, Suspense } from "react";
 import KambazNavigation from "./Navigation";
 import "./styles.css";
+import { Provider } from "react-redux";
+import store from "./store";
 
-export default function KambazLayout({ children }: Readonly<{ children: ReactNode }>) {
-    return (
-        <div id="wd-kambaz">
-            <div className="d-flex">
-                <div>
-                    <Suspense fallback={null}>
-                        <KambazNavigation />
-                    </Suspense>
-                </div>
-                <div className="wd-main-content-offset p-3 flex-fill">
-                    {children}
-                </div>
-            </div>
+export default function KambazLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
+  return (
+    <Provider store={store}>
+      <div id="wd-kambaz">
+        <div className="d-flex">
+          <div>
+            <Suspense fallback={null}>
+              <KambazNavigation />
+            </Suspense>
+          </div>
+          <div className="wd-main-content-offset p-3 flex-fill">
+            {children}
+          </div>
         </div>
-    );
+      </div>
+    </Provider>
+  );
 }
