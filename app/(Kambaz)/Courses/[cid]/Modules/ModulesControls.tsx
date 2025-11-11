@@ -4,17 +4,21 @@ import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 
 interface ModulesControlsProps {
+  moduleName: string;
+  setModuleName: React.Dispatch<React.SetStateAction<string>>;
+  addModule: () => void;
   onCollapseAll: () => void;
-  onViewProgress: () => void;
-  onPublishAll: () => void;
-  onAddModule: () => void;
+  onViewProgress?: () => void; // make optional if unused
+  onPublishAll?: () => void;   // make optional if unused
 }
 
 export default function ModulesControls({
+  moduleName,
+  setModuleName,
+  addModule,
   onCollapseAll,
   onViewProgress,
   onPublishAll,
-  onAddModule,
 }: ModulesControlsProps) {
   return (
     <div id="wd-modules-controls" className="text-nowrap">
@@ -23,7 +27,7 @@ export default function ModulesControls({
         size="lg"
         className="me-1 float-end"
         id="wd-add-module-btn"
-        onClick={onAddModule}
+        onClick={addModule}
       >
         <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
         Module
