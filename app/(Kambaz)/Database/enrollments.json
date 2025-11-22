@@ -1,0 +1,107 @@
+[
+  {
+    "_id": "e1",
+    "user": "u1",
+    "course": "CS1234"
+  },
+  {
+    "_id": "e2",
+    "user": "u2",
+    "course": "CS1234"
+  },
+  {
+    "_id": "e3",
+    "user": "u3",
+    "course": "CS1234"
+  },
+  {
+    "_id": "e4",
+    "user": "u4",
+    "course": "CS5130"
+  },
+  {
+    "_id": "e5",
+    "user": "u5",
+    "course": "CS5130"
+  },
+  {
+    "_id": "e6",
+    "user": "u2",
+    "course": "CS5130"
+  },
+  {
+    "_id": "e7",
+    "user": "u1",
+    "course": "CS5200"
+  },
+  {
+    "_id": "e8",
+    "user": "u6",
+    "course": "CS5200"
+  },
+  {
+    "_id": "e9",
+    "user": "u3",
+    "course": "CS5200"
+  },
+  {
+    "_id": "e10",
+    "user": "u4",
+    "course": "CS5800"
+  },
+  {
+    "_id": "e11",
+    "user": "u5",
+    "course": "CS5800"
+  },
+  {
+    "_id": "e12",
+    "user": "u6",
+    "course": "CS5800"
+  },
+  {
+    "_id": "e13",
+    "user": "u2",
+    "course": "CS5500"
+  },
+  {
+    "_id": "e14",
+    "user": "u3",
+    "course": "CS5500"
+  },
+  {
+    "_id": "e15",
+    "user": "u1",
+    "course": "CS5500"
+  },
+  {
+    "_id": "e16",
+    "user": "u4",
+    "course": "CS5010"
+  },
+  {
+    "_id": "e17",
+    "user": "u5",
+    "course": "CS5010"
+  },
+  {
+    "_id": "e18",
+    "user": "u2",
+    "course": "CS5010"
+  },
+  {
+    "_id": "e19",
+    "user": "u6",
+    "course": "CS5700"
+  },
+  {
+    "_id": "e20",
+    "user": "u1",
+    "course": "CS5700"
+  },
+  {
+    "_id": "e21",
+    "user": "u4",
+    "course": "CS5700"
+  }
+]

@@ -1,55 +1,195 @@
-export default function Assignments({ params }: { params: { cid: string } }) {
-  const { cid } = params;
-  return (
-    <div id="wd-assignments">
-      <input
-        placeholder="Search for Assignments"
-        id="wd-search-assignment"
-      />
-      <button id="wd-add-assignment-group">+ Group</button>
-      <button id="wd-add-assignment">+ Assignment</button>
+"use client";
 
-      <h3 id="wd-assignments-title">
-        ASSIGNMENTS 40% of Total <button>+</button>
-      </h3>
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
-       <ul id="wd-assignment-list">
-        <li className="wd-assignment-list-item">
-          <a
-            href={`/Courses/${cid}/Assignments/123`}
-            className="wd-assignment-link"
-          >
-            A1 - ENV + HTML
-          </a>
-          <div className="wd-assignment-meta">
-            Multiple Modules | <b>Not available until</b> May 6 at 12:00am | <b>Due</b> May 13 at 11:59pm | 100 pts
-          </div>
-        </li>
+import {
+    Button,
+    Form,
+    InputGroup,
+    Badge,
+} from "react-bootstrap";
 
-        <li className="wd-assignment-list-item">
-          <a
-            href={`/Courses/${cid}/Assignments/124`}
-            className="wd-assignment-link"
-          >
-            A2 - CSS + BOOTSTRAP
-          </a>
-          <div className="wd-assignment-meta">
-            Multiple Modules | <b>Not available until</b> May 13 at 12:00am | <b>Due</b> May 20 at 11:59pm | 100 pts
-          </div>
-        </li>
+import { FiSearch } from "react-icons/fi";
+import { BsGripVertical } from "react-icons/bs";
+import { IoEllipsisVertical } from "react-icons/io5";
+import { FaPlus, FaCaretDown, FaTrash } from "react-icons/fa6";
 
-        <li className="wd-assignment-list-item">
-          <a
-            href={`/Courses/${cid}/Assignments/125`}
-            className="wd-assignment-link"
-          >
-            A3 - JAVASCRIPT + REACT
-          </a>
-          <div className="wd-assignment-meta">
-            Multiple Modules | <b>Not available until</b> May 20 at 12:00am | <b>Due</b> May 27 at 11:59pm | 100 pts
-          </div>
-        </li>
-      </ul>
-    </div>
-  );
+import GreenCheckmark from "../Modules/GreenCheckmark";
+
+// Redux hooks (correct)
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+
+// Actions (correct)
+import {
+    deleteAssignment as deleteAssignmentAction,
+    setAssignments,
+} from "./reducer";
+
+// Client API (correct)
+import * as client from "../../client";
+
+// Types
+type User = {
+    role?: "FACULTY" | "TA" | "STUDENT";
+} | null;
+
+export default function Assignments() {
+    const { cid } = useParams() as { cid: string };
+    const dispatch = useAppDispatch();
+
+    // -------- REDUX STATE --------
+    const currentUser = useAppSelector(
+        (s) => s.accountReducer.currentUser
+    ) as User;
+
+    const canEdit = currentUser?.role === "FACULTY" || currentUser?.role === "TA";
+
+    const list = useAppSelector((s) =>
+        s.assignmentsReducer.assignments.filter((a) => a.course === cid)
+    );
+
+    // -------- LOAD ASSIGNMENTS --------
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await client.findAssignmentsForCourse(cid);
+            dispatch(setAssignments(data));
+        };
+        fetchData();
+    }, [cid, dispatch]);
+
+    // -------- DELETE HANDLER --------
+    const onDelete = async (id: string) => {
+        if (!canEdit) return;
+
+        if (
+            typeof window !== "undefined" &&
+            !window.confirm("Delete this assignment?")
+        )
+            return;
+
+        await client.deleteAssignment(id);
+        dispatch(deleteAssignmentAction(id));
+    };
+
+    return (
+        <div id="wd-assignments">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+                <div className="flex-grow-1" style={{ maxWidth: 420 }}>
+                    <InputGroup>
+                        <InputGroup.Text className="bg-white">
+                            <FiSearch />
+                        </InputGroup.Text>
+                        <Form.Control
+                            id="wd-search-assignment"
+                            placeholder="Search..."
+                        />
+                    </InputGroup>
+                </div>
+
+                {/* TOP RIGHT BUTTONS */}
+                {canEdit && (
+                    <div className="ms-3">
+                        <Button
+                            id="wd-add-assignment-group"
+                            variant="secondary"
+                            className="me-2"
+                        >
+                            <FaPlus className="me-1" /> Group
+                        </Button>
+
+                        <Link
+                            id="wd-add-assignment"
+                            href={`/Courses/${cid}/Assignments/New`}
+                            className="btn btn-danger"
+                        >
+                            <FaPlus className="me-1" /> Assignment
+                        </Link>
+                    </div>
+                )}
+            </div>
+
+            {/* ---------- SECTION HEADER ---------- */}
+            <div className="border rounded mb-3">
+                <div className="bg-secondary px-3 py-2 d-flex align-items-center border-bottom">
+                    <BsGripVertical className="wd-grip me-2" />
+                    <FaCaretDown className="me-2 fs-5 text-dark" />
+
+                    <h3 className="m-0 me-auto fw-semibold">ASSIGNMENTS</h3>
+
+                    <Badge bg="light" text="dark" className="me-2 border">
+                        40% of Total
+                    </Badge>
+
+                    {canEdit && (
+                        <Button size="sm" variant="light" className="border me-1">
+                            <FaPlus />
+                        </Button>
+                    )}
+
+                    <IoEllipsisVertical className="fs-5 text-secondary" />
+                </div>
+
+                {/* ---------- ASSIGNMENT LIST ---------- */}
+                <div className="border-start border-4 border-success bg-white">
+                    <ul id="wd-assignment-list" className="list-unstyled m-0">
+                        {list.length === 0 && (
+                            <li className="p-3 text-muted">
+                                No assignments for this course yet.
+                            </li>
+                        )}
+
+                        {list.map((a) => (
+                            <li
+                                key={a._id}
+                                className="wd-assignment-list-item p-3 border-bottom"
+                            >
+                                <div className="d-flex align-items-start">
+                                    <BsGripVertical className="wd-grip me-2" />
+
+                                    <div className="flex-grow-1">
+                                        <Link
+                                            href={`/Courses/${cid}/Assignments/${a._id}`}
+                                            className="fw-semibold text-decoration-none text-dark"
+                                        >
+                                            {a.title}
+                                        </Link>
+
+                                        <div className="text-muted small mt-1">
+                                            <span className="text-danger fw-semibold">
+                                                Multiple Modules
+                                            </span>{" "}
+                                            |
+                                            {" "}
+                                            {a.availableFrom
+                                                ? `Not available until ${new Date(a.availableFrom).toLocaleString()}`
+                                                : "Available now"}
+                                            {" "} | <strong>Due</strong>{" "}
+                                            {new Date(a.due).toLocaleString()}
+                                            {" "} | {a.points} pts
+                                        </div>
+                                    </div>
+
+                                    <div className="ms-2 d-inline-flex align-items-center gap-2">
+                                        <GreenCheckmark />
+
+                                        {canEdit && (
+                                            <FaTrash
+                                                className="text-danger"
+                                                onClick={() => onDelete(a._id)}
+                                                style={{ cursor: "pointer" }}
+                                            />
+                                        )}
+
+                                        <IoEllipsisVertical className="fs-5" />
+                                    </div>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
 }

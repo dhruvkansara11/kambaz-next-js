@@ -1,0 +1,440 @@
+[
+  {
+    "_id": "CS1234-M1",
+    "name": "Introduction to React",
+    "description": "What React is and why it’s useful. JSX and components.",
+    "course": "CS1234",
+    "lessons": [
+      {
+        "_id": "CS1234-M1-L1",
+        "name": "What is React?",
+        "description": "History and goals of React.",
+        "module": "CS1234-M1"
+      },
+      {
+        "_id": "CS1234-M1-L2",
+        "name": "JSX & Rendering",
+        "description": "How JSX compiles and renders.",
+        "module": "CS1234-M1"
+      },
+      {
+        "_id": "CS1234-M1-L3",
+        "name": "Components & Props",
+        "description": "Creating and passing props.",
+        "module": "CS1234-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS1234-M2",
+    "name": "State & Events",
+    "description": "Managing state, handling events, and lifting state up.",
+    "course": "CS1234",
+    "lessons": [
+      {
+        "_id": "CS1234-M2-L1",
+        "name": "useState",
+        "description": "Local state with hooks.",
+        "module": "CS1234-M2"
+      },
+      {
+        "_id": "CS1234-M2-L2",
+        "name": "Events",
+        "description": "Handling form and DOM events.",
+        "module": "CS1234-M2"
+      },
+      {
+        "_id": "CS1234-M2-L3",
+        "name": "Lifting State Up",
+        "description": "Share state across components.",
+        "module": "CS1234-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS1234-M3",
+    "name": "Next.js Routing",
+    "description": "App Router, dynamic routes, and data fetching.",
+    "course": "CS1234",
+    "lessons": [
+      {
+        "_id": "CS1234-M3-L1",
+        "name": "App Router Primer",
+        "description": "Pages, layouts, and segments.",
+        "module": "CS1234-M3"
+      },
+      {
+        "_id": "CS1234-M3-L2",
+        "name": "Dynamic Routes",
+        "description": "Route params and folder names.",
+        "module": "CS1234-M3"
+      },
+      {
+        "_id": "CS1234-M3-L3",
+        "name": "Client vs Server",
+        "description": "When to use each.",
+        "module": "CS1234-M3"
+      }
+    ]
+  },
+  {
+    "_id": "CS5130-M1",
+    "name": "Python Review",
+    "description": "Refresher on syntax, data types, and functions.",
+    "course": "CS5130",
+    "lessons": [
+      {
+        "_id": "CS5130-M1-L1",
+        "name": "Python Basics",
+        "description": "Control flow and data structures.",
+        "module": "CS5130-M1"
+      },
+      {
+        "_id": "CS5130-M1-L2",
+        "name": "Functions & Modules",
+        "description": "Reusable code and imports.",
+        "module": "CS5130-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS5130-M2",
+    "name": "Data Wrangling",
+    "description": "Cleaning and merging datasets with Pandas.",
+    "course": "CS5130",
+    "lessons": [
+      {
+        "_id": "CS5130-M2-L1",
+        "name": "Loading Data",
+        "description": "Reading CSV, Excel, and JSON.",
+        "module": "CS5130-M2"
+      },
+      {
+        "_id": "CS5130-M2-L2",
+        "name": "Merging & Joining",
+        "description": "Combining dataframes efficiently.",
+        "module": "CS5130-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS5130-M3",
+    "name": "Visualization",
+    "description": "Matplotlib, Seaborn, and exploratory plots.",
+    "course": "CS5130",
+    "lessons": [
+      {
+        "_id": "CS5130-M3-L1",
+        "name": "Plotting Basics",
+        "description": "Line and bar charts.",
+        "module": "CS5130-M3"
+      },
+      {
+        "_id": "CS5130-M3-L2",
+        "name": "Styling & Layouts",
+        "description": "Customizing figures.",
+        "module": "CS5130-M3"
+      }
+    ]
+  },
+  {
+    "_id": "CS5200-M1",
+    "name": "Database Design",
+    "description": "Conceptual modeling and schema creation.",
+    "course": "CS5200",
+    "lessons": [
+      {
+        "_id": "CS5200-M1-L1",
+        "name": "ER Diagrams",
+        "description": "Entities, attributes, and relationships.",
+        "module": "CS5200-M1"
+      },
+      {
+        "_id": "CS5200-M1-L2",
+        "name": "Normalization",
+        "description": "1NF, 2NF, 3NF and BCNF.",
+        "module": "CS5200-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS5200-M2",
+    "name": "SQL Programming",
+    "description": "Writing queries and managing data.",
+    "course": "CS5200",
+    "lessons": [
+      {
+        "_id": "CS5200-M2-L1",
+        "name": "SELECT & JOIN",
+        "description": "Retrieving and combining data.",
+        "module": "CS5200-M2"
+      },
+      {
+        "_id": "CS5200-M2-L2",
+        "name": "Aggregations",
+        "description": "GROUP BY, HAVING, and COUNT.",
+        "module": "CS5200-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS5200-M3",
+    "name": "Database Optimization",
+    "description": "Indexes, transactions, and performance.",
+    "course": "CS5200",
+    "lessons": [
+      {
+        "_id": "CS5200-M3-L1",
+        "name": "Indexes",
+        "description": "Speeding up queries.",
+        "module": "CS5200-M3"
+      },
+      {
+        "_id": "CS5200-M3-L2",
+        "name": "Transactions & ACID",
+        "description": "Concurrency and consistency.",
+        "module": "CS5200-M3"
+      }
+    ]
+  },
+  {
+    "_id": "CS5800-M1",
+    "name": "Sorting & Searching",
+    "description": "Efficiency analysis and implementation.",
+    "course": "CS5800",
+    "lessons": [
+      {
+        "_id": "CS5800-M1-L1",
+        "name": "Merge Sort",
+        "description": "Divide and conquer sorting.",
+        "module": "CS5800-M1"
+      },
+      {
+        "_id": "CS5800-M1-L2",
+        "name": "Binary Search",
+        "description": "Logarithmic search efficiency.",
+        "module": "CS5800-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS5800-M2",
+    "name": "Graph Theory",
+    "description": "Trees, BFS, DFS, and shortest paths.",
+    "course": "CS5800",
+    "lessons": [
+      {
+        "_id": "CS5800-M2-L1",
+        "name": "Traversal",
+        "description": "BFS & DFS implementation.",
+        "module": "CS5800-M2"
+      },
+      {
+        "_id": "CS5800-M2-L2",
+        "name": "Shortest Paths",
+        "description": "Dijkstra & Bellman-Ford.",
+        "module": "CS5800-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS5800-M3",
+    "name": "Dynamic Programming",
+    "description": "Optimization and overlapping subproblems.",
+    "course": "CS5800",
+    "lessons": [
+      {
+        "_id": "CS5800-M3-L1",
+        "name": "Memoization",
+        "description": "Top-down recursion.",
+        "module": "CS5800-M3"
+      },
+      {
+        "_id": "CS5800-M3-L2",
+        "name": "Tabulation",
+        "description": "Bottom-up approach.",
+        "module": "CS5800-M3"
+      }
+    ]
+  },
+  {
+    "_id": "CS5500-M1",
+    "name": "Software Processes",
+    "description": "Waterfall, Agile, and Scrum.",
+    "course": "CS5500",
+    "lessons": [
+      {
+        "_id": "CS5500-M1-L1",
+        "name": "SDLC Models",
+        "description": "Waterfall vs Agile.",
+        "module": "CS5500-M1"
+      },
+      {
+        "_id": "CS5500-M1-L2",
+        "name": "Scrum Roles",
+        "description": "PO, SM, and Dev Team.",
+        "module": "CS5500-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS5500-M2",
+    "name": "Testing & QA",
+    "description": "JUnit, CI/CD, and pipelines.",
+    "course": "CS5500",
+    "lessons": [
+      {
+        "_id": "CS5500-M2-L1",
+        "name": "Unit Testing",
+        "description": "Best practices for tests.",
+        "module": "CS5500-M2"
+      },
+      {
+        "_id": "CS5500-M2-L2",
+        "name": "CI/CD",
+        "description": "Automating builds and tests.",
+        "module": "CS5500-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS5500-M3",
+    "name": "Team Projects",
+    "description": "Requirements, sprints, and deliverables.",
+    "course": "CS5500",
+    "lessons": [
+      {
+        "_id": "CS5500-M3-L1",
+        "name": "User Stories",
+        "description": "Writing good stories.",
+        "module": "CS5500-M3"
+      },
+      {
+        "_id": "CS5500-M3-L2",
+        "name": "Sprint Planning",
+        "description": "Defining tasks and velocity.",
+        "module": "CS5500-M3"
+      }
+    ]
+  },
+  {
+    "_id": "CS5010-M1",
+    "name": "Java Fundamentals",
+    "description": "Classes, inheritance, and encapsulation.",
+    "course": "CS5010",
+    "lessons": [
+      {
+        "_id": "CS5010-M1-L1",
+        "name": "OOP Basics",
+        "description": "Encapsulation & inheritance.",
+        "module": "CS5010-M1"
+      },
+      {
+        "_id": "CS5010-M1-L2",
+        "name": "Polymorphism",
+        "description": "Overriding & interfaces.",
+        "module": "CS5010-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS5010-M2",
+    "name": "Design Patterns",
+    "description": "Factory, Singleton, and Observer.",
+    "course": "CS5010",
+    "lessons": [
+      {
+        "_id": "CS5010-M2-L1",
+        "name": "Creational Patterns",
+        "description": "Singleton and Factory.",
+        "module": "CS5010-M2"
+      },
+      {
+        "_id": "CS5010-M2-L2",
+        "name": "Behavioral Patterns",
+        "description": "Observer and Strategy.",
+        "module": "CS5010-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS5010-M3",
+    "name": "GUI Programming",
+    "description": "Swing components and layouts.",
+    "course": "CS5010",
+    "lessons": [
+      {
+        "_id": "CS5010-M3-L1",
+        "name": "Swing Basics",
+        "description": "JFrame and components.",
+        "module": "CS5010-M3"
+      },
+      {
+        "_id": "CS5010-M3-L2",
+        "name": "Layouts",
+        "description": "BorderLayout, GridLayout.",
+        "module": "CS5010-M3"
+      }
+    ]
+  },
+  {
+    "_id": "CS5700-M1",
+    "name": "Network Fundamentals",
+    "description": "OSI and TCP/IP models.",
+    "course": "CS5700",
+    "lessons": [
+      {
+        "_id": "CS5700-M1-L1",
+        "name": "OSI Model",
+        "description": "7-layer architecture.",
+        "module": "CS5700-M1"
+      },
+      {
+        "_id": "CS5700-M1-L2",
+        "name": "TCP/IP Stack",
+        "description": "Protocol mapping.",
+        "module": "CS5700-M1"
+      }
+    ]
+  },
+  {
+    "_id": "CS5700-M2",
+    "name": "Socket Programming",
+    "description": "Client-server communication.",
+    "course": "CS5700",
+    "lessons": [
+      {
+        "_id": "CS5700-M2-L1",
+        "name": "Sockets in Python",
+        "description": "Creating clients and servers.",
+        "module": "CS5700-M2"
+      },
+      {
+        "_id": "CS5700-M2-L2",
+        "name": "Protocols",
+        "description": "HTTP and custom protocols.",
+        "module": "CS5700-M2"
+      }
+    ]
+  },
+  {
+    "_id": "CS5700-M3",
+    "name": "Network Simulation",
+    "description": "Packet flow and routing.",
+    "course": "CS5700",
+    "lessons": [
+      {
+        "_id": "CS5700-M3-L1",
+        "name": "Packet Transmission",
+        "description": "Delays and drops.",
+        "module": "CS5700-M3"
+      },
+      {
+        "_id": "CS5700-M3-L2",
+        "name": "Routing Algorithms",
+        "description": "Dijkstra & Bellman-Ford.",
+        "module": "CS5700-M3"
+      }
+    ]
+  }
+]

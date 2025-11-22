@@ -1,23 +1,54 @@
-import { ReactNode } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
+import { ReactNode, useState } from "react";
 import CourseNavigation from "./Navigation";
-export default async function CoursesLayout({
+import { useSelector } from "react-redux";
+import { useParams } from "next/navigation";
+import { FaAlignJustify } from "react-icons/fa6";
+import Breadcrumb from "./Breadcrumb";
+import coursesData from "../../Database/courses.json";
+
+type Course = {
+  _id: string;
+  number?: string;
+  name: string;
+  description: string;
+  img?: string;
+};
+
+export default function CoursesLayout({
   children,
-  params,
-}: Readonly<{ children: ReactNode; params: Promise<{ cid: string }> }>) {
-  const { cid } = await params;
+}: {
+  children: ReactNode;
+}) {
+  const { cid } = useParams();
+  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const list = courses.length ? courses : (coursesData as Course[]);
+  const course = list.find((c: any) => c._id === cid);
+
+  const [showSidebar, setShowSidebar] = useState(true);
+
   return (
     <div id="wd-courses">
-      <h2>Courses {cid}</h2>
+      <h2 className="text-danger d-flex align-items-center">
+        <FaAlignJustify
+          className="me-4 fs-4 mb-1"
+          style={{ cursor: "pointer" }}
+          onClick={() => setShowSidebar(!showSidebar)}
+        />
+        <Breadcrumb courseName={course?.name || "Course"} />
+      </h2>
       <hr />
-      <table>
-        <tbody>
-          <tr>
-            <td valign="top" width="200"><CourseNavigation/></td>
-            <td valign="top" width="100%">{children}</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <div className="d-flex">
+        {showSidebar && (
+          <div className="d-none d-md-block">
+            <CourseNavigation />
+          </div>
+        )}
+        <div className="flex-fill">{children}</div>
+      </div>
     </div>
   );
 }
-
