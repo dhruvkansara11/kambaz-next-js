@@ -1,28 +1,38 @@
 {
-  "name": "kambaz-next-js-cs5610-fa25-05",
+  "name": "kambaz-next",
   "version": "0.1.0",
   "private": true,
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "homepage": "https://github.com/dhruvkansara11/kambaz-next-js#readme",
+  "bugs": {
+    "url": "https://github.com/dhruvkansara11/kambaz-next-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvkansara11/kambaz-next-js.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.9.2",
+    "@reduxjs/toolkit": "^2.10.0",
     "axios": "^1.13.2",
-    "axois": "^0.0.1-security",
     "bootstrap": "^5.3.8",
-    "latest": "^0.2.0",
-    "next": "15.5.2",
-    "react": "19.1.0",
+    "next": "^15.5.3",
+    "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
-    "react-datepicker": "^8.7.0",
-    "react-dom": "19.1.0",
+    "react-datepicker": "^8.8.0",
+    "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-select": "^5.10.2",
-    "redux": "^5.0.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -32,7 +42,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.5.2",
+    "eslint-config-next": "15.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
