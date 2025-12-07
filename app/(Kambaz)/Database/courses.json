@@ -8,7 +8,24 @@
     "instructor": "Prof. Emily Johnson",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image2.jpeg"
+    "img": "/image2.jpeg",
+    "modules": [
+      {
+        "_id": "CS1234-M1",
+        "name": "Introduction to React",
+        "description": "What React is and why it’s useful. JSX and components."
+      },
+      {
+        "_id": "CS1234-M2",
+        "name": "State & Events",
+        "description": "Managing state, handling events, and lifting state up."
+      },
+      {
+        "_id": "CS1234-M3",
+        "name": "Next.js Routing",
+        "description": "App Router, dynamic routes, and data fetching."
+      }
+    ]
   },
   {
     "_id": "CS5130",
@@ -19,7 +36,24 @@
     "instructor": "Prof. David Lee",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image3.jpeg"
+    "img": "/image3.jpeg",
+    "modules": [
+      {
+        "_id": "CS5130-M1",
+        "name": "Python Review",
+        "description": "Refresher on syntax, data types, and functions."
+      },
+      {
+        "_id": "CS5130-M2",
+        "name": "Data Wrangling",
+        "description": "Cleaning and merging datasets with Pandas."
+      },
+      {
+        "_id": "CS5130-M3",
+        "name": "Visualization",
+        "description": "Matplotlib, Seaborn, and exploratory plots."
+      }
+    ]
   },
   {
     "_id": "CS5200",
@@ -30,7 +64,24 @@
     "instructor": "Prof. Olivia Brown",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image4.jpeg"
+    "img": "/image4.jpeg",
+    "modules": [
+      {
+        "_id": "CS5200-M1",
+        "name": "Database Design",
+        "description": "Conceptual modeling and schema creation."
+      },
+      {
+        "_id": "CS5200-M2",
+        "name": "SQL Programming",
+        "description": "Writing queries and managing data."
+      },
+      {
+        "_id": "CS5200-M3",
+        "name": "Database Optimization",
+        "description": "Indexes, transactions, and performance."
+      }
+    ]
   },
   {
     "_id": "CS5800",
@@ -41,7 +92,24 @@
     "instructor": "Prof. Michael Chen",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image5.jpeg"
+    "img": "/image5.jpeg",
+    "modules": [
+      {
+        "_id": "CS5800-M1",
+        "name": "Sorting & Searching",
+        "description": "Efficiency analysis and implementation."
+      },
+      {
+        "_id": "CS5800-M2",
+        "name": "Graph Theory",
+        "description": "Trees, BFS, DFS, and shortest paths."
+      },
+      {
+        "_id": "CS5800-M3",
+        "name": "Dynamic Programming",
+        "description": "Optimization and overlapping subproblems."
+      }
+    ]
   },
   {
     "_id": "CS5500",
@@ -52,7 +120,24 @@
     "instructor": "Prof. Sophia Patel",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image6.jpeg"
+    "img": "/image6.jpeg",
+    "modules": [
+      {
+        "_id": "CS5500-M1",
+        "name": "Software Processes",
+        "description": "Waterfall, Agile, and Scrum."
+      },
+      {
+        "_id": "CS5500-M2",
+        "name": "Testing & QA",
+        "description": "JUnit, CI/CD, and pipelines."
+      },
+      {
+        "_id": "CS5500-M3",
+        "name": "Team Projects",
+        "description": "Requirements, sprints, and deliverables."
+      }
+    ]
   },
   {
     "_id": "CS5010",
@@ -63,7 +148,24 @@
     "instructor": "Prof. Benjamin Wright",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image7.jpeg"
+    "img": "/image7.jpeg",
+    "modules": [
+      {
+        "_id": "CS5010-M1",
+        "name": "Java Fundamentals",
+        "description": "Classes, inheritance, and encapsulation."
+      },
+      {
+        "_id": "CS5010-M2",
+        "name": "Design Patterns",
+        "description": "Factory, Singleton, and Observer."
+      },
+      {
+        "_id": "CS5010-M3",
+        "name": "GUI Programming",
+        "description": "Swing components and layouts."
+      }
+    ]
   },
   {
     "_id": "CS5700",
@@ -74,6 +176,23 @@
     "instructor": "Prof. Laura Singh",
     "department": "Computer Science",
     "credits": 4,
-    "img": "/image8.jpeg"
+    "img": "/image8.jpeg",
+    "modules": [
+      {
+        "_id": "CS5700-M1",
+        "name": "Network Fundamentals",
+        "description": "OSI and TCP/IP models."
+      },
+      {
+        "_id": "CS5700-M2",
+        "name": "Socket Programming",
+        "description": "Client-server communication."
+      },
+      {
+        "_id": "CS5700-M3",
+        "name": "Network Simulation",
+        "description": "Packet flow and routing."
+      }
+    ]
   }
 ]

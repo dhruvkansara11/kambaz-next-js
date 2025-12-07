@@ -1,44 +1,75 @@
-
 import axios from "axios";
 
-
 export const HTTP_SERVER =
-    process.env.NEXT_PUBLIC_HTTP_SERVER || "http://localhost:4000";
+  process.env.NEXT_PUBLIC_HTTP_SERVER || "http://localhost:4000";
 
+const axiosWithCredentials = axios.create({
+  baseURL: HTTP_SERVER,
+  withCredentials: true,
+});
 
 export const USERS_API = "/api/users";
 
-
-const axiosWithCredentials = axios.create({
-    baseURL: HTTP_SERVER,
-    withCredentials: true,
-});
-
-export type Credentials = { username: string; password: string };
-export type UserUpdates = Record<string, unknown>;
-export type NewUserPayload = Record<string, unknown>;
-
-export const signin = async (credentials: Credentials) =>
-    (await axiosWithCredentials.post(`${USERS_API}/signin`, credentials)).data;
-
-export const signup = async (user: NewUserPayload) =>
-    (await axiosWithCredentials.post(`${USERS_API}/signup`, user)).data;
-
-export const signout = async () => {
-    await axiosWithCredentials.post(`${USERS_API}/signout`);
+export const findAllUsers = async () => {
+  const response = await axiosWithCredentials.get(USERS_API);
+  return response.data;
 };
 
-export const profile = async () =>
-    (await axiosWithCredentials.post(`${USERS_API}/profile`)).data;
+export const deleteUser = async (userId: string) => {
+  const response = await axiosWithCredentials.delete(`${USERS_API}/${userId}`);
+  return response.data;
+};
 
-export const findAllUsers = async () =>
-    (await axiosWithCredentials.get(USERS_API)).data;
+export const findUsersByRole = async (role: string) => {
+  const response = await axiosWithCredentials.get(`${USERS_API}?role=${role}`);
+  return response.data;
+};
 
-export const updateUser = async (id: string, updates: UserUpdates) =>
-    (await axiosWithCredentials.put(`${USERS_API}/${id}`, updates)).data;
+export const createUser = async (user: any) => {
+  const response = await axiosWithCredentials.post(USERS_API, user);
+  return response.data;
+};
 
-export const createUser = async (user: NewUserPayload) =>
-    (await axiosWithCredentials.post(USERS_API, user)).data;
+export const findUserById = async (id: string) => {
+  const response = await axiosWithCredentials.get(`${USERS_API}/${id}`);
+  return response.data;
+};
 
-export const deleteUser = async (id: string) =>
-    (await axiosWithCredentials.delete(`${USERS_API}/${id}`)).data;
+export const findUsersByPartialName = async (name: string) => {
+  const response = await axiosWithCredentials.get(`${USERS_API}?name=${name}`);
+  return response.data;
+};
+
+export const signin = async (credentials: any) => {
+  const response = await axiosWithCredentials.post(
+    `${USERS_API}/signin`,
+    credentials
+  );
+  return response.data;
+};
+
+export const signup = async (user: any) => {
+  const response = await axiosWithCredentials.post(
+    `${USERS_API}/signup`,
+    user
+  );
+  return response.data;
+};
+
+export const updateUser = async (user: any) => {
+  const response = await axiosWithCredentials.put(
+    `${USERS_API}/${user._id}`,
+    user
+  );
+  return response.data;
+};
+
+export const profile = async () => {
+  const response = await axiosWithCredentials.post(`${USERS_API}/profile`);
+  return response.data;
+};
+
+export const signout = async () => {
+  const response = await axiosWithCredentials.post(`${USERS_API}/signout`);
+  return response.data;
+};

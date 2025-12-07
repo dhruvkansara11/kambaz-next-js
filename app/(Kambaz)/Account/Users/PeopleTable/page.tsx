@@ -1,23 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { FaUserCircle } from "react-icons/fa";
 import { Table } from "react-bootstrap";
+import { FaUserCircle } from "react-icons/fa";
 
-import PeopleDetails from "../Details";
+import PeopleDetails from "../../../Courses/[cid]/People/Details";
 
-export default function PeopleTable({
-  users = [],
-  refreshUsers,
-}: {
-  users: any[];
-  refreshUsers: () => Promise<void>;
-}) {
+export default function PeopleTable({ users = [] }: { users?: any[] }) {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
   const handleUserClick = (userId: string) => {
     setSelectedUserId(userId);
+    console.log("selected user ", userId);
   };
 
   if (!users || users.length === 0) {
@@ -29,21 +24,18 @@ export default function PeopleTable({
     );
   }
 
-  return (
-    <div id="wd-people-table" className="p-3">
-      <h3 className="mb-3">People ({users.length})</h3>
+  console.log("in shared people table: ", users.length);
 
+  return (
+    <div id="wd-people-table">
+      <h3 className="mb-3">People ({users.length})</h3>
       {selectedUserId && (
         <PeopleDetails
           uid={selectedUserId}
-          onClose={async () => {
-            setSelectedUserId(null);
-            await refreshUsers();     //  auto refresh after edit/delete
-          }}
+          onClose={() => setSelectedUserId(null)}
         />
       )}
-
-      <Table striped bordered hover>
+      <Table striped>
         <thead>
           <tr>
             <th>Name</th>
@@ -55,30 +47,33 @@ export default function PeopleTable({
           </tr>
         </thead>
         <tbody>
-          {users.map((user: any) => (
+          {users.map((user) => (
             <tr key={user._id}>
               <td className="wd-full-name text-nowrap">
                 {currentUser?.role === "ADMIN" ? (
                   <button
                     onClick={() => handleUserClick(user._id)}
-                    className="btn btn-link p-0 text-start text-decoration-none"
+                    className="btn btn-link text-decoration-none p-0 text-start"
                   >
                     <FaUserCircle className="me-2 fs-1 text-secondary" />
-                    <span>{user.firstName} {user.lastName}</span>
+                    <span className="wd-first-name">{user.firstName} </span>
+                    <span className="wd-last-name">{user.lastName}</span>
                   </button>
                 ) : (
                   <span>
                     <FaUserCircle className="me-2 fs-1 text-secondary" />
-                    {user.firstName} {user.lastName}
+                    <span className="wd-first-name">{user.firstName} </span>
+                    <span className="wd-last-name">{user.lastName}</span>
                   </span>
                 )}
               </td>
-
-              <td>{user.loginId}</td>
-              <td>{user.section}</td>
-              <td>{user.role}</td>
-              <td>{user.lastActivity}</td>
-              <td>{user.totalActivity}</td>
+              <td className="wd-login-id">{user.loginId || user.username}</td>
+              <td className="wd-section">{user.section || "N/A"}</td>
+              <td className="wd-role">{user.role}</td>
+              <td className="wd-last-activity">{user.lastActivity || "N/A"}</td>
+              <td className="wd-total-activity">
+                {user.totalActivity || "N/A"}
+              </td>
             </tr>
           ))}
         </tbody>
