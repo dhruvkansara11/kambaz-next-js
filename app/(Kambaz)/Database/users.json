@@ -152,5 +152,19 @@
     "section": "S101",
     "lastActivity": "2020-10-15",
     "totalActivity": "22:11:45"
+  },
+   {
+    "_id": "u12",
+    "username": "ada",
+    "password": "123",
+    "firstName": "Admin",
+    "lastName": "Admin",
+    "email": "admin@hogwarts.com",
+    "dob": "1881-07-01",
+    "role": "Admin",
+    "loginId": "001234571A",
+    "section": "S101",
+    "lastActivity": "2020-10-15",
+    "totalActivity": "22:11:45"
   }
 ]
