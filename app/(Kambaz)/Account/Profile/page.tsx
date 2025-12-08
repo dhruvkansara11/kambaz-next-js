@@ -47,7 +47,7 @@ export default function Profile() {
     setBusy(true);
 
     try {
-      const updated = await client.updateUser(profile._id, profile);
+      const updated = await client.updateUser(profile._id);
       setProfile(updated);
       dispatch(setCurrentUser(updated));
       setSuccess(true);

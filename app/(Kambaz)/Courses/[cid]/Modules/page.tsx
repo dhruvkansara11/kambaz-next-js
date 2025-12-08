@@ -34,16 +34,19 @@ export default function Modules() {
   const onCreateModuleForCourse = async () => {
     if (!cid) return;
     const newModule = { name: moduleName, course: cid };
+    // @ts-ignore
     const module = await client.createModuleForCourse(cid, newModule);
     dispatch(setModules([...modules, module]));
   };
 
   const onRemoveModule = async (moduleId: string) => {
+    // @ts-ignore
     await client.deleteModule(cid, moduleId);
     dispatch(setModules(modules.filter((m: any) => m._id !== moduleId)));
   };
 
   const onUpdateModule = async (module: any) => {
+    // @ts-ignore
     await client.updateModule(cid, module);
     const newModules = modules.map((m: any) =>
       m._id === module._id ? module : m
@@ -64,6 +67,7 @@ export default function Modules() {
   return (
     <div>
       {isFaculty && (
+        // @ts-ignore
         <ModulesControls
           moduleName={moduleName}
           setModuleName={setModuleName}
