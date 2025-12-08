@@ -78,6 +78,7 @@ export default function Modules() {
       <br />
       <br />
       <ListGroup className="rounded-0" id="wd-modules">
+        // @ts-ignore
         {modules.map((module, index) => (
           <ListGroupItem
             key={index}
